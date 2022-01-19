@@ -8,7 +8,10 @@ class Chronometer {
   start(callback) {
     // ... your code goes here
     this.intervalId = setInterval(() => {
-      return this.currentTime ++
+      this.currentTime ++;
+      if (callback) {
+        callback();
+      }
     }, 1000)
   }
 
@@ -39,10 +42,7 @@ class Chronometer {
 
   split() {
     // ... your code goes here
-    let minutes = Math.floor(this.currentTime / 60)
-    let seconds = this.currentTime % 60
-
-    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+    return `${this.computeTwoDigitNumber(this.getMinutes())}:${this.computeTwoDigitNumber(this.getSeconds())}`
   }
 }
 
